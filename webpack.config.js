@@ -20,9 +20,8 @@ module.exports = {
         ]
     },
     entry: {
-        cpanel: ["./src/control-panel.js"],
-        "message-board": ["./src/message-board.js"],
-        tasks: ["./src/tasks.js"]
+        "cpanel": ["./src/control-panel.js"],
+        "tasks": ["./src/tasks.js"]
     },
     output: {
         path: path.resolve(__dirname, "public"),
