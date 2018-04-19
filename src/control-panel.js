@@ -43,7 +43,7 @@ document.forms.fontSizeForm.fontSize.forEach(el => {
 
 class UserPrefStore extends Store {
   getInitialState() {
-    return {
+    return localStorage['preferences'] ? JSON.parse(localStorage['preferences']) : {
       userName: "Flo",
       fontSize: "small"
     };
@@ -80,6 +80,8 @@ const userPrefStore = new UserPrefStore(controlpanelDispatcher);
 userPrefStore.addListener(state => {
   console.info(`Current state: ${JSON.stringify(state)}`);  
   render(state);
+  // everytime the store is updated the localstorage preferences is also
+  localStorage['preferences'] = JSON.stringify(state);
 });
 
 const render = ({userName, fontSize}) => {
@@ -90,4 +92,5 @@ const render = ({userName, fontSize}) => {
 
 }
 
-render(userPrefStore.getUserPreferences);
+// start the page with the default layout that the store has set
+render(userPrefStore.getUserPreferences());
